@@ -14,10 +14,12 @@
  */
 
 #include <stdlib.h>
-#pragma once
+#pragma 
 
 #ifndef MATHLIB_H_
 #define MATHLIB_H_
+
+
 
 
 
@@ -29,7 +31,8 @@
  * @return vraci 0 pri uspechu
 */
 int k_plus(float base_num, float add_num){
-    base_num = base_num + add_num;
+    float temp_num = base_num + add_num;
+    base_num = temp_num;
     return 0;
 };
 
@@ -58,7 +61,7 @@ int k_krat(float base_num, float times_num){
 };
 
 /**
- * @brief k_krat
+ * @brief k_deleno
  * vydeli base_num s div_num
  * @param[in, out] base_num prvni ciclo (pred /)
  * @param[in] div_num druhe cislo (za /)
@@ -76,7 +79,7 @@ int k_deleno(float base_num, float div_num){
  * @brief k_faktorial
  * vypocita faktorial
  * @param[in, out] base_num cislo ze ktereho chceme faktorial
- * @return vraci 0 pri uspechu
+ * @return vraci 0 pri uspechu, vraci 1 pri faktorialu desetineho cisla
 */
 int k_faktorial(float base_num){
     return 0;
@@ -87,7 +90,7 @@ int k_faktorial(float base_num){
  * umocni basenum_num na^ base_num
  * @param[in, out] base_num puvodni ciclo (pod mocninou)
  * @param[in] mocnitel cislo na (mocnitel)
- * @return vraci 0 pri uspechu
+ * @return vraci 0 pri uspechu, vraci 1 pri mocnitel < 0 nebo desetinne cislo
 */
 int k_mocnina(float base_num, int mocnitel){
     return 0;
@@ -98,7 +101,7 @@ int k_mocnina(float base_num, int mocnitel){
  * base_num odmocni odmocnitel -em
  * @param[in, out] base_num puvodni cislo (pod odmocninou)
  * @param[in] times_num kolikata odmocnina (odmocnitel)
- * @return vraci 0 pri uspechu
+ * @return vraci 0 pri uspechu, 1 pri odmocnitel =< 0 nebo desetinne cislo 
 */
 int k_odmocnina(float base_num, int odmocnitel){
 
@@ -112,6 +115,7 @@ int k_odmocnina(float base_num, int odmocnitel){
 int k_custom_fce(float base_num, float other_num){
     return 0;
 }
+
 
 
 

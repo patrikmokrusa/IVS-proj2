@@ -1,0 +1,5 @@
+/test/googletest-main
+CMakeFiles
+CMakeCache.txt
+*.o
+*.a
