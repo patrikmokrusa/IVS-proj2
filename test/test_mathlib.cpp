@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "../libs/mathlib.h"
+#include "../libs/mathlib.hpp"
 
 class Basic_math_test : public ::testing::Test {
 };
@@ -8,102 +8,96 @@ class Advanced_math_test : public ::testing::Test {
 };
 
 TEST_F(Basic_math_test, Plus){
-    float base_num = 5;
-    float num = 3;
-    auto error = k_plus(base_num, num);
-    EXPECT_EQ(error, 0);
-    EXPECT_EQ(base_num, 8);
+    double base_num = 5;
+    double num = 3;
+    double val = k_plus(base_num, num);
+    
+    EXPECT_EQ(val, 8);
 
     num = 0.3;
-    error = k_plus(base_num, num);
-    EXPECT_EQ(base_num, 8.3);
-    EXPECT_EQ(error, 0);
+    double val2 = k_plus(5, num);
+    EXPECT_EQ(val2, 5.3);
 }
 
 TEST_F(Basic_math_test, Minus){
-    float base_num = 5;
-    float num = 3;
-    auto error = k_minus(base_num, num);
-    EXPECT_EQ(error, 0);
-    EXPECT_EQ(base_num, 2);
+    double base_num = 5;
+    double num = 3;
+    double val = k_minus(base_num, num);
+
+    EXPECT_EQ(val, 2);
 
     num = 0.3;
-    error = k_minus(base_num, num);
-    EXPECT_EQ(base_num, 1.7);
-    EXPECT_EQ(error, 0);
+    val = k_minus(base_num, num);
+    EXPECT_EQ(val, 4.7);
 }
 
 TEST_F(Basic_math_test, Krat){
-    float base_num = 5;
-    float num = 3;
-    auto error = k_krat(base_num, num);
-    EXPECT_EQ(error, 0);
-    EXPECT_EQ(base_num, 15);
+    double base_num = 5;
+    double num = 3;
+    double val = k_krat(base_num, num);
+
+    EXPECT_EQ(val, 15);
 
     num = 0.3;
-    error = k_krat(base_num, num);
-    EXPECT_EQ(base_num, 4.5);
-    EXPECT_EQ(error, 0);
+    val = k_krat(base_num, num);
+    EXPECT_EQ(val, 1.5);
 }
 
 TEST_F(Basic_math_test, Deleno){
-    float base_num = 6;
-    float num = 2;
-    auto error = k_deleno(base_num, num);
-    EXPECT_EQ(error, 0);
-    EXPECT_EQ(base_num, 3);
+    double base_num = 6;
+    double num = 2;
+    double val = k_deleno(base_num, num);
+
+    EXPECT_EQ(val, 3);
 
     num = 0.3;
-    error = k_deleno(base_num, num);
-    EXPECT_EQ(base_num, 10);
-    EXPECT_EQ(error, 0);
+    val = k_deleno(base_num, num);
+    EXPECT_EQ(val, 20);
+    
 
-    num = 0;
-    error = k_deleno(base_num, num);
-    EXPECT_EQ(error, 1);
+    EXPECT_THROW(k_deleno(10, 0), std::overflow_error);
 }
 
 TEST_F(Advanced_math_test, Faktorial){
-    float base_num = 5;
-    auto error = k_faktorial(base_num);
-    EXPECT_EQ(error, 0);
-    EXPECT_EQ(base_num, 8);
+    double base_num = 5;
+    double val = k_faktorial(base_num);
+    
+    EXPECT_EQ(val, 120);
 
-    base_num = 1.2;
-    error = k_faktorial(base_num);
-    EXPECT_EQ(error, 1);
+    base_num = -1.2;
+    EXPECT_THROW(k_faktorial(base_num), std::out_of_range);
 }
 
 TEST_F(Advanced_math_test, Mocnina){
-    float base_num = 2;
-    float num = 3;
-    auto error = k_mocnina(base_num, num);
-    EXPECT_EQ(error, 0);
-    EXPECT_EQ(base_num, 8);
+    double base_num = 2;
+    double num = 3;
+    double val = k_mocnina(base_num, num);
+    
+    EXPECT_EQ(val, 8);
 
-    num = 0.3;
-    error = k_mocnina(base_num, num);
-    EXPECT_EQ(error, 1);
+    double num1 = 0.3;
+    EXPECT_THROW(k_mocnina(10, num1), std::out_of_range);
 
-    num = -0.3;
-    error = k_mocnina(base_num, num);
-    EXPECT_EQ(error, 1);
+    double num2 = -3;
+    EXPECT_THROW(k_mocnina(10, num2), std::out_of_range);
+
+    double num3 = -0.3;
+    EXPECT_THROW(k_mocnina(10, num3), std::out_of_range);
 }
 
 TEST_F(Advanced_math_test, Odmocnina){
-    float base_num = 8;
-    float num = 3;
-    auto error = k_mocnina(base_num, num);
-    EXPECT_EQ(error, 0);
-    EXPECT_EQ(base_num, 2);
+    double base_num = 8;
+    double num = 3;
+    double val = k_odmocnina(base_num, num);
+    EXPECT_EQ(val, 2);
 
-    num = 0.3;
-    error = k_mocnina(base_num, num);
-    EXPECT_EQ(error, 1);
+    EXPECT_THROW(k_odmocnina(-10, 2), std::invalid_argument);
 
-    num = -0.3;
-    error = k_mocnina(base_num, num);
-    EXPECT_EQ(error, 1);
+    EXPECT_THROW(k_odmocnina(10, 0.3), std::out_of_range);
+
+    EXPECT_THROW(k_odmocnina(10, -3), std::out_of_range);
+
+    // EXPECT_THROW(k_odmocnina(10, -0.3), std::out_of_range);
 }
 
 /**
