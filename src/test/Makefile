@@ -59,5 +59,5 @@ gtest_main.a : gtest-all.o gtest_main.o
 test_mathlib.o : $(USER_DIR)/test_mathlib.cpp $(GTEST_HEADERS) #../libs/mathlib.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/test_mathlib.cpp
 
-test_mathlib : test_mathlib.o gtest_main.a ../libs/mathlib.hpp
+test_mathlib : test_mathlib.o gtest_main.a ../mathlib.hpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
