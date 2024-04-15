@@ -1,4 +1,5 @@
-/test/googletest-main
+.vscode
+/src/test/googletest-main
 CMakeFiles
 CMakeCache.txt
 *.o

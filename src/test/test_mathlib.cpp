@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "../libs/mathlib.hpp"
+#include "../mathlib.hpp"
 
 class Basic_math_test : public ::testing::Test {
 };
@@ -86,10 +86,18 @@ TEST_F(Advanced_math_test, Mocnina){
 }
 
 TEST_F(Advanced_math_test, Odmocnina){
+    //basic odmocnina (odmocnitel == 2)
+    double val = k_odmocnina(169, 2);
+    EXPECT_EQ(val, 13);
+    EXPECT_THROW(k_odmocnina(-10, 2), std::invalid_argument);
+
+
+
+    //obecna odmocnina
     double base_num = 8;
     double num = 3;
-    double val = k_odmocnina(base_num, num);
-    EXPECT_EQ(val, 2);
+    double val2 = k_odmocnina(base_num, num);
+    EXPECT_EQ(val2, 2);
 
     EXPECT_THROW(k_odmocnina(-10, 2), std::invalid_argument);
 
@@ -103,3 +111,13 @@ TEST_F(Advanced_math_test, Odmocnina){
 /**
  * @todo dodelat test na custom
 */
+TEST_F(Advanced_math_test, Obracena_hodnota){
+    double base_num = 2;
+    double val = k_obracena_hodnota(base_num);
+    
+    EXPECT_EQ(val, 0.5);
+    EXPECT_EQ(4,k_obracena_hodnota(0.25));
+    EXPECT_EQ(-4,k_obracena_hodnota(-0.25));
+
+    EXPECT_THROW(k_obracena_hodnota(0), std::overflow_error);
+}

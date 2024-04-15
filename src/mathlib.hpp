@@ -7,7 +7,7 @@
 // $Date:       $2024-07-04
 //============================================================================//
 /**
- * @file mathlib.h
+ * @file mathlib.hpp
  * @author Patrik Mokruša
  *
  * @brief Definice funkci matematicke knihovny pro kalkulacka
@@ -135,6 +135,17 @@ double k_mocnina(double base_num, double mocnitel){
 */
 double k_odmocnina(double base_num, double odmocnitel){
 
+    if (odmocnitel == 2) ///< pro klasickou druhou odmocninu
+    {
+        if (base_num < 0)
+        {
+            throw std::invalid_argument("Pod druhou odmocninu nemuzu dat zaporne cislo");
+        }
+        base_num = sqrt(base_num);
+        return base_num;
+    }
+    
+
     double j = 1; ///< urcuje iterator, podle ktereho se hada obecna odmocnina
 
     if (std::fmod(odmocnitel, 1) != 0 || odmocnitel < 0){
@@ -154,16 +165,18 @@ double k_odmocnina(double base_num, double odmocnitel){
     return rooted_num;
 }
 /**
- * @brief k_custom_fce
- * @todo vymyslet
- * 
+ * @brief k_obracena_hodnota
+ * obracena hodnota k base_num (1/base_num)
+ * @param[in] base_num cislo ke kteremu chceme obracenou hodnotu
+ * @return vraci obracenou hodnotu k cislu
+ * @exception pri zadani nuly (nelze delit nulou)
 */
-int k_custom_fce(double base_num, float other_num){
-    return 0;
+double k_obracena_hodnota(double base_num){
+    if (base_num == 0) {
+        throw std::overflow_error("Nepovoleno delit nulou");
+    }
+    base_num = 1/base_num;
+    return base_num;
 }
-
-
-
-
 
 #endif // MATHLIB_H_
