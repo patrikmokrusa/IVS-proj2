@@ -1,0 +1,107 @@
+# IVS Projekt 2 (Kalkulačka) | 2024
+Tým Hugo | HugoCalc 
+Autoři:
+	Patrik Mokruša (xmokrup00)
+	Daniel Geier (xgeierd00) - vedoucí
+	Adam Černoš (xcernoa00)
+	Lukáš Jelínek (xjelinl00)
+
+Jazyk implementace:
+- C/C++
+- Qt pro GUI
+
+Systém pro správu verzí:
+- Git - GitHub
+- https://github.com/dangeier/ivs-proj2-calculator
+- Uživatel ivskontrola byl přidán pro kontrolu práce vyučujícími
+
+Stanovené terminy:
+- [12. 3. 2024]	Návrh plánu, potvrzení plánu
+- [14. 3. 2024]	Odevzdání plánu (vedoucí)
+- [15. 3. 2024] Tvorba sdíleného kalendáře, Kanban board
+- [17. 3. 2024] Stanovení pravidel pro psaní kódu
+- [19. 3. 2024] Makefile
+- [20. 3. 2024] Wireframe
+- [22. 3. 2024] Mockup
+- [22. 3. 2024] Tvorba mockup "další verze" kalkulačky 
+- [25. 3. 2024] Testy pro matematickou knihovnu
+- [28. 3. 2024] Návrh matematických knihoven
+- [1. 4. 2024]	Implementace matematických knihoven
+- [2. 4. 2024]	Debugging matematické knihovny
+- [3. 4. 2024]	Implementace GUI
+- [5. 4. 2024]	Propojení GUI s obslužnými funkcemi
+- [8. 4. 2024] 	Profiling
+- [10. 4. 2024] Tvorba Doxyfile, dokumentace
+- [12. 4. 2024] Instalátor
+- [15. 4. 2024] Revize projektu, připomínky
+- [17. 4. 2024] Finální review
+- [22. 4. 2024] Last minute dodělávky
+- [25. 4. 2024] Odevzdání repozitáře (vedoucí)
+- [9. 5. 2024] 	Seznam problému týmu (každý samostatně)
+- [??. ?. 2024] Revize projektu, připomínky 
+- [??. ?. 2024] Tvorba prezentace 
+- [??. ?. 2024] Instalace u zákazníka
+- [??. ?. 2024] Obhajoba
+
+Rozdělení úkolů:
+- Společné 
+	- Návrh plánu
+	- Návrh mockup
+	- Tvorba prezentace
+    - Finální zhodnocení, revize
+    - Zhodnocení problémů (každý samostatně)
+    - Instalace u zákazníka
+    - Ukázka práce, obhajoba
+    
+- Patrik Mokruša (xmokrup00)
+	- Organizace projektu
+	- Tvorba Doxyfile, dokumentace
+	- Základní matematické funkce
+	- Tvorba testů pro matematickou knihovnu
+
+- Daniel Geier (xgeierd00)
+	- Plán
+	- Tvorba sdíleného kalendáře, Kanban board
+	- Pokročilé matematické funkce
+	- Makefile
+	- Provázání GUI s obslužnými funkcemi (propojení frontend + backend)
+
+- Adam Černoš (xcernoa00)
+	- Návrh GUI
+	- Implementace GUI
+	- Frontend
+	- Instalátor
+	- Profiling
+
+- Lukáš Jelínek (xjelinl00)
+	- Profiling
+	- Uživatelská příručka, nápověda
+	- Volitelná funkce navíc
+	- Instalátor
+	- Tvorba testů pro matematickou knihovnu
+
+Komunikace (pravidla, kanály):
+- Hl. komunikační kanál: 
+	- Discord
+		- Dedikovaný discord server
+		- Denní komunikace, schůzky
+	- Osobní schůzka
+		- Několik v průběhu vývoje
+		- Např. pro prvotní brainstroming
+	- Sdílený kalendář + Kanban board
+		- Přehledně veškeré termíny
+		- Je vidět v jakém stavu se nachází jednotlivé komponenty (Kanban board)
+	- Email, telefon
+		- Slouží pro mimořádné případy
+
+- Pravidla:
+	- Doba člena na odpověď zprávy na Discordu je 24h, následně je kontaktován formou emailu/telefonu (mimořádné události).
+	- Pravidelné každotýdenní schůzka všech členů (Discord/osobně), kde bude konzultováno dosavadní vypracovaná práce a budoucí postup
+	- Vedoucí týmu může přerozdělit jednotlivé úkolu po předchozí domluvě s týmem jinak, než je zde uvedeno. Je na vedoucím dohlédnout na celkový průběh vývoje a na rovnoměrné rozdělení práce mezi ostatní členy.
+	- Člen týmu může požádat ostatní členy o pomoc, konzultaci, případně přerozdělení úkolů než je dáno.
+
+Tabulka ohodnoceni
+- V průběhu práce na projektu bude vedoucí týmu ohodnocovat různé kvality členů týmu body (kladné za dobrou práci a záporne za špatnou).
+- Kvality, které se budou hodnotit jsou: Komunikace, Dochvilnost a Kvalita práce.
+	- (např. člen týmu neodpoví na zprávu do 24h. dostane -1 bod do kolonky Komunikace)
+- Po odevzdání projektu se všichni podívají na tuto tabulku a ten s nejméně body dostane nějakou formu trestu (typu tvorba prezentace, atp.).
