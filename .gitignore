@@ -11,3 +11,4 @@ Makefile
 src/html
 src/latex
 src/_deps
+src/build
