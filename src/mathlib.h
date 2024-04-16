@@ -1,6 +1,6 @@
 //============================================================================//
 //
-// Purpose:     Custom math lib for kalkulacka project
+// Purpose:     Interface for mathlib
 //
 // $NoKeywords: $kalkulacka $mathlib.h
 // $Author:    Patrik Mokruša <xmokrup00@stud.fit.vutbr.cz>
