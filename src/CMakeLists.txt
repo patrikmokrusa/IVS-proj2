@@ -5,7 +5,7 @@ project(HugoCalc LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(SOURCE_FILES mathlib.cpp calc.cpp profiling.cpp)
+set(SOURCE_FILES mathlib.cpp calc.cpp)
 
 set(HEADER_FILES mathlib.h)
 
