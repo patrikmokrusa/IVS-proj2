@@ -9,9 +9,9 @@ set(SOURCE_FILES mathlib.cpp calc.cpp)
 
 set(HEADER_FILES mathlib.h)
 
-# Output built files to ./build/
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/./build)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/./build)
+# Output built files to ./target/
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/./target)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/./target)
 
 add_executable(${PROJECT_NAME} ${HEADER_FILES} ${SOURCE_FILES})
 
@@ -57,27 +57,6 @@ if(DOXYGEN_FOUND)
     COMMENT "Generating API documentation with Doxygen"
     VERBATIM)
 endif()
-
-add_custom_target(clean-cmake-files COMMAND ${CMAKE_COMMAND} -P clean-all.cmake)
-
-# clean-all.cmake
-set(cmake_generated
-    ${CMAKE_BINARY_DIR}/CMakeCache.txt ${CMAKE_BINARY_DIR}/cmake_install.cmake
-    ${CMAKE_BINARY_DIR}/Makefile ${CMAKE_BINARY_DIR}/CMakeFiles)
-
-foreach(file ${cmake_generated})
-
-  if(EXISTS ${file})
-    file(REMOVE_RECURSE ${file})
-  endif()
-
-endforeach(file)
-
-# Clean-all
-add_custom_target(
-  clean-all
-  COMMAND ${CMAKE_BUILD_TOOL} clean
-  COMMAND ${CMAKE_COMMAND} -P clean-all.cmake)
 
 # Support for Visual Studio
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT
