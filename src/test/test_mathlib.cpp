@@ -1,9 +1,33 @@
+//============================================================================//
+//
+// Purpose:     tests for mathlib.cpp
+//
+// $NoKeywords: $kalkulacka $mathlib.cpp
+// $Author:    Patrik Mokruša <xmokrup00@stud.fit.vutbr.cz>
+// $Date:       $2024-19-04
+//============================================================================//
+/**
+ * @file test_mathlib.cpp
+ * @author Patrik Mokruša
+ *
+ * @brief testy pro matematickou knihovnu zapomoci googletest.
+ * kazdy test zahrnuje test na spravnost vysledku a chybove inputy (desetinne cisla, zaporne cisla a zaporne desetinne cisla).
+ */
+
+
+// Includes
 #include "../mathlib.cpp"
-// #include "../mathlib.h"
 #include "gtest/gtest.h"
 
+
+/**
+ * @brief Slouzi hlavne k rozeznani testu Basic (jednoduzsich) funkci matematicke knihovny
+*/
 class Basic_math_test : public ::testing::Test {};
 
+/**
+ * @brief Slouzi hlavne k rozeznani testu Advanced (slozitejsich) funkci matematicke knihovny
+*/
 class Advanced_math_test : public ::testing::Test {};
 
 TEST_F(Basic_math_test, Plus) {
@@ -101,12 +125,16 @@ TEST_F(Advanced_math_test, Odmocnina) {
 
   EXPECT_THROW(k_odmocnina(10, -3), std::out_of_range);
 
-  // EXPECT_THROW(k_odmocnina(10, -0.3), std::out_of_range);
+  EXPECT_THROW(k_odmocnina(10, -0.3), std::out_of_range);
+
+  double val3 = k_odmocnina(16, 4);
+  EXPECT_EQ(val3, 2);
+
+  double val4 = k_odmocnina(1024, 10);
+  EXPECT_EQ(val4, 2);
 }
 
-/**
- * @todo dodelat test na custom
- */
+
 TEST_F(Advanced_math_test, Obracena_hodnota) {
   double base_num = 2;
   double val = k_obracena_hodnota(base_num);
