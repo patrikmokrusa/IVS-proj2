@@ -25,8 +25,64 @@ QString allowedOperations[] = { "^", "+", "-", "*", "/"};
 
 void MainWindow::result()
 {
+    QString primary = ui->lineEdit_primary->text();
+    QString secondary = ui->lineEdit_secondary->text();
+    QString operation = ui->lineEdit_operation->text();
+
+    double primary_d = primary.toDouble();
+    double secondary_d = secondary.toDouble();
+    double result;
+
+    if (operation == "+")
+    {
+        result = k_plus(primary_d, secondary_d);
+    }
+    else if (operation == "-")
+    {
+        result = k_minus(primary_d, secondary_d);
+    }
+    else if (operation == "*")
+    {
+        result = k_krat(primary_d, secondary_d);
+    }
+    else if (operation == "/")
+    {
+        try {
+            result = k_deleno(secondary_d, primary_d);
+        }
+        catch (std::overflow_error const& ex){
+            ui->lineEdit_primary->setText(ex.what());
+            return;
+        }
+    }
+    else if (operation == "^")
+    {
+        try
+        {
+            result = k_mocnina(secondary_d, primary_d);
+        }
+        catch(std::out_of_range const& ex)
+        {
+            ui->lineEdit_primary->setText(ex.what());
+            return;
+        }
+        
+    }
+    else if (operation == "√")
+    {
+        try
+        {
+            result = k_odmocnina(secondary_d, primary_d);
+        }
+        catch(const std::exception& e)
+        {
+            ui->lineEdit_primary->setText(e.what());
+            return;
+        }
+        
+    }
     reset();
-    ui->lineEdit_primary->setText("result");
+    ui->lineEdit_primary->setText(QString::number(result));
 }
 
 void MainWindow::reset()
@@ -239,67 +295,8 @@ void MainWindow::on_button_decimal_clicked()
 
 void MainWindow::on_button_equals_clicked()
 {
-    QString primary = ui->lineEdit_primary->text();
-    QString secondary = ui->lineEdit_secondary->text();
-    QString operation = ui->lineEdit_operation->text();
 
-    double primary_d = primary.toDouble();
-    double secondary_d = secondary.toDouble();
-    double result;
-
-    if (operation == "+")
-    {
-        result = k_plus(primary_d, secondary_d);
-    }
-    else if (operation == "-")
-    {
-        result = k_minus(primary_d, secondary_d);
-    }
-    else if (operation == "*")
-    {
-        result = k_krat(primary_d, secondary_d);
-    }
-    else if (operation == "/")
-    {
-        try {
-            result = k_deleno(secondary_d, primary_d);
-        }
-        catch (std::overflow_error const& ex){
-            ui->lineEdit_primary->setText(ex.what());
-            return;
-        }
-    }
-    else if (operation == "^")
-    {
-        try
-        {
-            result = k_mocnina(secondary_d, primary_d);
-        }
-        catch(std::out_of_range const& ex)
-        {
-            ui->lineEdit_primary->setText(ex.what());
-            return;
-        }
-        
-    }
-    else if (operation == "√")
-    {
-        try
-        {
-            result = k_odmocnina(secondary_d, primary_d);
-        }
-        catch(const std::exception& e)
-        {
-            ui->lineEdit_primary->setText(e.what());
-            return;
-        }
-        
-    }
-    
-
-    ui->lineEdit_secondary->setText("");
-    ui->lineEdit_operation->setText("");
-    ui->lineEdit_primary->setText(QString::number(result));
+    result();
 }
 
 void MainWindow::on_button_factorial_clicked()
