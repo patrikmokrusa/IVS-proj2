@@ -2,6 +2,7 @@
 #include "./ui_mainwindow.h"
 #include "../mathlib.cpp"
 #include <string>
+#include <stdexcept>
 
 
 
@@ -205,7 +206,7 @@ void MainWindow::on_button_div_clicked()
     }
 
     ui->lineEdit_secondary->setText(primary);
-    ui->lineEdit_operation->setText("*");
+    ui->lineEdit_operation->setText("/");
     ui->lineEdit_primary->setText("");
 }
 
@@ -266,8 +267,42 @@ void MainWindow::on_button_equals_clicked()
     }
     else if (operation == "/")
     {
-        result = k_deleno(primary_d, secondary_d);
+        try {
+            result = k_deleno(secondary_d, primary_d);
+        }
+        catch (std::overflow_error const& ex){
+            ui->lineEdit_primary->setText(ex.what());
+            return;
+        }
     }
+    else if (operation == "^")
+    {
+        try
+        {
+            result = k_mocnina(secondary_d, primary_d);
+        }
+        catch(std::out_of_range const& ex)
+        {
+            ui->lineEdit_primary->setText(ex.what());
+            return;
+        }
+        
+    }
+    else if (operation == "√")
+    {
+        try
+        {
+            result = k_odmocnina(secondary_d, primary_d);
+        }
+        catch(const std::exception& e)
+        {
+            ui->lineEdit_primary->setText(e.what());
+            return;
+        }
+        
+    }
+    
+    
     
     
     
