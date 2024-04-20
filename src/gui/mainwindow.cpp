@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "../mathlib.cpp"
+#include <string>
 
 
 
@@ -246,6 +248,32 @@ void MainWindow::on_button_equals_clicked()
     QString secondary = ui->lineEdit_secondary->text();
     QString operation = ui->lineEdit_operation->text();
 
+    double primary_d = primary.toDouble();
+    double secondary_d = secondary.toDouble();
+    double result;
+
+    if (operation == "+")
+    {
+        result = k_plus(primary_d, secondary_d);
+    }
+    else if (operation == "-")
+    {
+        result = k_minus(primary_d, secondary_d);
+    }
+    else if (operation == "*")
+    {
+        result = k_krat(primary_d, secondary_d);
+    }
+    else if (operation == "/")
+    {
+        result = k_deleno(primary_d, secondary_d);
+    }
+    
+    
+    
+    
+    
+    
 
 
 
@@ -253,6 +281,6 @@ void MainWindow::on_button_equals_clicked()
 
     ui->lineEdit_secondary->setText("");
     ui->lineEdit_operation->setText("");
-    ui->lineEdit_primary->setText("result");
+    ui->lineEdit_primary->setText(QString::number(result));
 }
 
