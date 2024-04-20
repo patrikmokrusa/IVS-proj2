@@ -296,26 +296,11 @@ void MainWindow::on_button_equals_clicked()
         
     }
     
-    
-    
-    
-    
-    
-    
-    
-
-
-
-
 
     ui->lineEdit_secondary->setText("");
     ui->lineEdit_operation->setText("");
     ui->lineEdit_primary->setText(QString::number(result));
-
-
-
-
-
+}
 
 void MainWindow::on_button_factorial_clicked()
 {
