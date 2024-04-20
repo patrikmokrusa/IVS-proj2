@@ -12,12 +12,21 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+protected:
+    void keyPressEvent(QKeyEvent *event);
 
 public:
+
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
+    void result();
+
+    void reset();
+
+    void handleOperation(QString operand);
+
     void on_button_0_clicked();
 
     void on_button_1_clicked();
@@ -58,7 +67,9 @@ private slots:
 
     void on_button_decimal_clicked();
 
-    void on_button_div_by_ten_clicked();
+    void on_button_y_exp_x_clicked();
+
+    void on_button_factorial_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -5,6 +5,7 @@
 #include <stdexcept>
 
 
+#include <QKeyEvent>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,6 +18,65 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+QString allowedInputs[] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."};
+QString allowedOperations[] = { "^", "+", "-", "*", "/"};
+
+void MainWindow::result()
+{
+    reset();
+    ui->lineEdit_primary->setText("result");
+}
+
+void MainWindow::reset()
+{
+    ui->lineEdit_primary->setText("");
+    ui->lineEdit_secondary->setText("");
+    ui->lineEdit_operation->setText("");
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    if(event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter) {
+        result();
+        return;
+    }
+    else if(event->key() == Qt::Key_Backspace) {
+        ui->lineEdit_primary->backspace();
+        return;
+    }
+    else if(event->key() == Qt::Key_Delete) {
+        reset();
+    }
+
+    QString input = event->text();
+
+    for (int i = 0; i < 5; i++){
+        if(input == allowedOperations[i]) handleOperation(input);
+    }
+
+    for (int i = 0; i < 11; i++) {
+        if(input == allowedInputs[i]) ui->lineEdit_primary->insert(input);
+    }
+}
+
+void MainWindow::handleOperation(QString operand)
+{
+    QString primary = ui->lineEdit_primary->text();
+    QString secondary = ui->lineEdit_secondary->text();
+    QString operation = ui->lineEdit_operation->text();
+    if(primary.length() == 0 && secondary.length() == 0) {
+        return;
+    }
+    if(operation != "") {
+        ui->lineEdit_operation->setText(operand);
+        return;
+    }
+
+    ui->lineEdit_secondary->setText(primary);
+    ui->lineEdit_operation->setText(operand);
+    ui->lineEdit_primary->setText("");
 }
 
 void MainWindow::on_button_0_clicked()
@@ -72,10 +132,7 @@ void MainWindow::on_button_9_clicked()
 
 void MainWindow::on_button_ac_clicked()
 {
-    ui->lineEdit_primary->setText("");
-    ui->lineEdit_secondary->setText("");
-    ui->lineEdit_operation->setText("");
-
+    reset();
 }
 
 
@@ -120,97 +177,34 @@ void MainWindow::on_button_times_ten_clicked()
     return;
 };
 
-void MainWindow::on_button_div_by_ten_clicked()
-{
-    QString text = ui->lineEdit_primary->text();
-    if(text.length() == 0){
-        return;
-    }
-    else if(text.length() == 1 && text[0] == '0'){
-        return;
-    }
-}
-
 
 void MainWindow::on_button_plus_clicked()
 {
-    QString primary = ui->lineEdit_primary->text();
-    QString secondary = ui->lineEdit_secondary->text();
-    QString operation = ui->lineEdit_operation->text();
-    if(ui->lineEdit_primary->text().length() == 0 && ui->lineEdit_secondary->text().length() == 0) {
-        return;
-    }
-    if(operation != "") {
-        ui->lineEdit_operation->setText("+");
-        return;
-    }
-
-    ui->lineEdit_secondary->setText(primary);
-    ui->lineEdit_operation->setText("+");
-    ui->lineEdit_primary->setText("");
+    handleOperation("+");
 }
 
 
 void MainWindow::on_button_minus_clicked()
 {
-    QString primary = ui->lineEdit_primary->text();
-    QString secondary = ui->lineEdit_secondary->text();
-    QString operation = ui->lineEdit_operation->text();
-
-    if(ui->lineEdit_primary->text().length() == 0 && ui->lineEdit_secondary->text().length() == 0) {
-        return;
-    }
-    if(operation != "") {
-        ui->lineEdit_operation->setText("-");
-        return;
-    }
-
-    ui->lineEdit_secondary->setText(primary);
-    ui->lineEdit_operation->setText("-");
-    ui->lineEdit_primary->setText("");
+    handleOperation("-");
 }
 
 
 void MainWindow::on_button_times_clicked()
 {
-    QString primary = ui->lineEdit_primary->text();
-    QString secondary = ui->lineEdit_secondary->text();
-    QString operation = ui->lineEdit_operation->text();
-
-    if(ui->lineEdit_primary->text().length() == 0 && ui->lineEdit_secondary->text().length() == 0) {
-        return;
-    }
-    if(operation != "") {
-        ui->lineEdit_operation->setText("*");
-        return;
-    }
-
-    ui->lineEdit_secondary->setText(primary);
-    ui->lineEdit_operation->setText("*");
-    ui->lineEdit_primary->setText("");
+    handleOperation("*");
 }
 
 
 void MainWindow::on_button_div_clicked()
 {
-    QString primary = ui->lineEdit_primary->text();
-    QString secondary = ui->lineEdit_secondary->text();
-    QString operation = ui->lineEdit_operation->text();
-
-    if(ui->lineEdit_primary->text().length() == 0 && ui->lineEdit_secondary->text().length() == 0) {
-        return;
-    }
-    if(operation != "") {
-        ui->lineEdit_operation->setText("/");
-        return;
-    }
-
-    ui->lineEdit_secondary->setText(primary);
-    ui->lineEdit_operation->setText("/");
-    ui->lineEdit_primary->setText("");
+    handleOperation("/");
 }
 
-
+void MainWindow::on_button_y_exp_x_clicked()
+{
+    handleOperation("^");
+}
 
 void MainWindow::on_button_negate_clicked()
 {
@@ -317,5 +311,14 @@ void MainWindow::on_button_equals_clicked()
     ui->lineEdit_secondary->setText("");
     ui->lineEdit_operation->setText("");
     ui->lineEdit_primary->setText(QString::number(result));
+
+
+
+
+
+
+void MainWindow::on_button_factorial_clicked()
+{
+    ui->lineEdit_primary->setText("factorial");
 }
 
