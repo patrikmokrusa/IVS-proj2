@@ -47,16 +47,29 @@ add_executable(test_mathlib test/test_mathlib.cpp)
 target_link_libraries(test_mathlib gtest_main gmock_main)
 gtest_discover_tests(test_mathlib)
 
-find_package(Doxygen 1.8.0)
+find_package(Doxygen 1.9.0)
 if(DOXYGEN_FOUND)
   set(doxyfile ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile)
   add_custom_target(
-    doc
+    doc ALL
     COMMAND ${DOXYGEN_EXECUTABLE} ${doxyfile}
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
     COMMENT "Generating API documentation with Doxygen"
     VERBATIM)
 endif()
+
+# Ensures that we do an out of source build
+macro(MACRO_ENSURE_OUT_OF_SOURCE_BUILD MSG)
+  string(COMPARE EQUAL "${CMAKE_SOURCE_DIR}" "${CMAKE_BINARY_DIR}" insource)
+  get_filename_component(PARENTDIR ${CMAKE_SOURCE_DIR} PATH)
+  string(COMPARE EQUAL "${CMAKE_SOURCE_DIR}" "${PARENTDIR}" insourcesubdir)
+  if(insource OR insourcesubdir)
+    message(FATAL_ERROR "${MSG}")
+  endif(insource OR insourcesubdir)
+endmacro(MACRO_ENSURE_OUT_OF_SOURCE_BUILD)
+
+macro_ensure_out_of_source_build(
+  "${CMAKE_PROJECT_NAME} requires an out of source build.")
 
 # Support for Visual Studio
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT
