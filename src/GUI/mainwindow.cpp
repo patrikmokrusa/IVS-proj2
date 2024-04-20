@@ -207,12 +207,7 @@ void MainWindow::on_button_div_clicked()
     ui->lineEdit_primary->setText("");
 }
 
-void MainWindow::on_button_equals_clicked()
-{
-    ui->lineEdit_secondary->setText("");
-    ui->lineEdit_operation->setText("");
-    ui->lineEdit_primary->setText("result");
-}
+
 
 void MainWindow::on_button_negate_clicked()
 {
@@ -245,5 +240,19 @@ void MainWindow::on_button_decimal_clicked()
     }
 }
 
+void MainWindow::on_button_equals_clicked()
+{
+    QString primary = ui->lineEdit_primary->text();
+    QString secondary = ui->lineEdit_secondary->text();
+    QString operation = ui->lineEdit_operation->text();
 
+
+
+
+
+
+    ui->lineEdit_secondary->setText("");
+    ui->lineEdit_operation->setText("");
+    ui->lineEdit_primary->setText("result");
+}
 
