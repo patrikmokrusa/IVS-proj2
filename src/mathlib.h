@@ -11,8 +11,6 @@
  * @author Patrik Mokruša
  *
  * @brief Deklarace funkci matematicke knihovny pro kalkulacka
- * Pro spusteni testu si stahnete google test z githubu a dejte do slozy test
- * takto: test/googletest-main/(googlemock, googletest, ...)
  */
 
 #ifndef MATHLIB_H
@@ -55,7 +53,7 @@ double k_krat(double base_num, double times_num);
  * @param[in] base_num prvni ciclo (pred /)
  * @param[in] div_num druhe cislo (za /)
  * @return vraci vydelene cislo
- * @exception pri deleni nulou
+ * @exception overflow_error pri deleni nulou
  */
 double k_deleno(double base_num, double div_num);
 
@@ -64,7 +62,7 @@ double k_deleno(double base_num, double div_num);
  * vypocita faktorial
  * @param[in] base_num cislo ze ktereho chceme faktorial
  * @return vraci faktorial
- * @exception pri zadani zaporneho nebo desetinneho cisla
+ * @exception out_of_range pri zadani zaporneho nebo desetinneho cisla
  */
 double k_faktorial(double base_num);
 
@@ -74,7 +72,7 @@ double k_faktorial(double base_num);
  * @param[in] base_num puvodni ciclo (pod mocninou)
  * @param[in] mocnitel cislo na (mocnitel)
  * @return vraci umocnene cislo
- * @exception pri mocnenim zapornym cislem
+ * @exception out_of_range pri mocnenim zapornym cislem
  */
 double k_mocnina(double base_num, double mocnitel);
 
@@ -84,8 +82,7 @@ double k_mocnina(double base_num, double mocnitel);
  * @param[in] base_num puvodni cislo (pod odmocninou)
  * @param[in] times_num kolikata odmocnina (odmocnitel)
  * @return odmocnene cislo
- * @exception pri odmocnenim desetinnym nebo zapornym cislem
- * @todo jednoduche priklady fungujou ale na tezsi to tweakuje
+ * @exception invalid_argument pri odmocnenim desetinnym nebo zapornym cislem
  */
 double k_odmocnina(double base_num, double odmocnitel);
 
@@ -94,7 +91,7 @@ double k_odmocnina(double base_num, double odmocnitel);
  * obracena hodnota k base_num (1/base_num)
  * @param[in] base_num cislo ke kteremu chceme obracenou hodnotu
  * @return vraci obracenou hodnotu k cislu
- * @exception pri zadani nuly (nelze delit nulou)
+ * @exception overflow_error pri zadani nuly (nelze delit nulou)
  */
 double k_obracena_hodnota(double base_num);
 

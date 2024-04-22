@@ -11,8 +11,6 @@
  * @author Patrik Mokruša
  *
  * @brief Definice funkci matematicke knihovny pro kalkulacka
- * Pro spusteni testu si stahnete google test z githubu a dejte do slozy test
- * takto: test/googletest-main/(googlemock, googletest, ...)
  */
 
 // Includes
@@ -21,50 +19,26 @@
 #include <stdexcept>
 #include <stdlib.h>
 
-/**
- * @brief k_plus
- * přičte add_num k base_num
- * @param[in] base_num prvni ciclo (pred +)
- * @param[in] add_num druhe cislo (za +)
- * @return vraci soucet cisel
- */
+
 double k_plus(double base_num, double add_num) {
   double temp_num = base_num + add_num;
   return temp_num;
 };
 
-/**
- * @brief k_minus
- * odecte sub_num od base_num
- * @param[in] base_num prvni ciclo (pred -)
- * @param[in] sub_num druhe cislo (za -)
- * @return vraci rozdil cisel
- */
+
 double k_minus(double base_num, double sub_num) {
   double temp_num = base_num - sub_num;
   return temp_num;
 };
 
-/**
- * @brief k_krat
- * prinasobi tiems_num k base_num
- * @param[in] base_num prvni ciclo (pred *)
- * @param[in] times_num druhe cislo (za *)
- * @return vraci soucin cisel
- */
+
 double k_krat(double base_num, double times_num) {
   double temp_num = base_num * times_num;
   return temp_num;
 };
 
-/**
- * @brief k_deleno
- * vydeli base_num s div_num
- * @param[in] base_num prvni ciclo (pred /)
- * @param[in] div_num druhe cislo (za /)
- * @return vraci vydelene cislo
- * @exception overflow_error pri deleni nulou
- */
+
+
 double k_deleno(double base_num, double div_num) {
   if (div_num == 0) {
     throw std::overflow_error("Nepovoleno delit nulou");
@@ -73,13 +47,7 @@ double k_deleno(double base_num, double div_num) {
   return temp_num;
 };
 
-/**
- * @brief k_faktorial
- * vypocita faktorial
- * @param[in] base_num cislo ze ktereho chceme faktorial
- * @return vraci faktorial
- * @exception out_of_range pri zadani zaporneho nebo desetinneho cisla
- */
+
 double k_faktorial(double base_num) {
   if (base_num < 0 || std::fmod(base_num, 1) != 0) {
     throw std::out_of_range("Zadanne zaporne nebo desetinne cislo");
@@ -94,14 +62,7 @@ double k_faktorial(double base_num) {
   return temp_num;
 }
 
-/**
- * @brief k_mocnina
- * umocni basenum_num na^ base_num
- * @param[in] base_num puvodni ciclo (pod mocninou)
- * @param[in] mocnitel cislo na (mocnitel)
- * @return vraci umocnene cislo
- * @exception out_of_range pri mocnenim zapornym cislem
- */
+
 double k_mocnina(double base_num, double mocnitel) {
   if (mocnitel < 0 || std::fmod(mocnitel, 1) != 0) {
     throw std::out_of_range("Zadanne zaporne nebo desetinne cislo");
@@ -115,14 +76,7 @@ double k_mocnina(double base_num, double mocnitel) {
   return temp_num;
 }
 
-/**
- * @brief k_odmocnina
- * base_num odmocni odmocnitel -em
- * @param[in] base_num puvodni cislo (pod odmocninou)
- * @param[in] times_num kolikata odmocnina (odmocnitel)
- * @return odmocnene cislo
- * @exception invalid_argument odmocnenim desetinnym nebo zapornym cislem
- */
+
 double k_odmocnina(double base_num, double odmocnitel) {
 
   if (odmocnitel == 2) ///< pro klasickou druhou odmocninu
@@ -152,13 +106,8 @@ double k_odmocnina(double base_num, double odmocnitel) {
 
   return rooted_num;
 }
-/**
- * @brief k_obracena_hodnota
- * obracena hodnota k base_num (1/base_num)
- * @param[in] base_num cislo ke kteremu chceme obracenou hodnotu
- * @return vraci obracenou hodnotu k cislu
- * @exception overflow_error pri zadani nuly (nelze delit nulou)
- */
+
+
 double k_obracena_hodnota(double base_num) {
   if (base_num == 0) {
     throw std::overflow_error("Nepovoleno delit nulou");

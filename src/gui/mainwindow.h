@@ -1,8 +1,25 @@
+//============================================================================//
+//
+// Purpose:     UI Definition
+//
+// $NoKeywords: $kalkulacka $mainwindow.h $UI
+// $Author:    Adam Černoš <xcernoa00@stud.fit.vutbr.cz>
+// $Date:       $2024-22-04
+//============================================================================//
+/**
+ * @file mainwindow.h
+ * @author Adam Černoš
+ * 
+ *
+ * @brief Definice UI funkcí, Vytvořeno pomocí QT editoru
+ */
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <QDialog>
+#include <QLabel>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -71,7 +88,16 @@ private slots:
 
     void on_button_factorial_clicked();
 
+    void on_pushButton_clicked();
+
+    void on_exitButton_clicked();
+
+    void on_button_1_over_x_clicked();
+
+    void on_button_exp_x_root_y_clicked();
+
 private:
     Ui::MainWindow *ui;
+    QDialog *dialog;
 };
 #endif // MAINWINDOW_H
