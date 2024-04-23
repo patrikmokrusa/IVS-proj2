@@ -1,4 +1,11 @@
 # CMakeLists
+# ============================================================================//
+#
+# Purpose:     CMakeLists file for compilation and building the project
+#
+# $NoKeywords: $cmake $CMakeLists.txt $Author:    Daniel Geier
+# <xgeierd00@stud.fit.vutbr.cz> $Date:       $2024-04-24
+# ============================================================================//
 cmake_minimum_required(VERSION 3.5)
 
 project(
@@ -29,7 +36,7 @@ set(PROF_SOURCE_FILES profiling.cpp)
 set(PROJECT_SOURCES main.cpp ${GUI_SOURCE_FILES})
 
 # Fetch the package
-find_package(Qt6 6.4.2 QUIET)
+find_package(Qt6 QUIET)
 
 if(NOT Qt6_FOUND)
   # Initial message
@@ -188,7 +195,7 @@ set(targets ${CMAKE_CURRENT_SOURCE_DIR}/build/target)
 
 add_custom_target(
   profile
-  COMMAND ${targets} ./prof
+  COMMAND ${targets} ./prof < ../../profiling/data.txt
   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
   VERBATIM)
 add_custom_target(
