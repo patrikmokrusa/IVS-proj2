@@ -5,7 +5,9 @@ project(HugoCalc LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(SOURCE_FILES mathlib.cpp calc.cpp)
+add_subdirectory("gui")
+
+set(SOURCE_FILES mathlib.cpp ./gui/main.cpp)
 
 set(HEADER_FILES mathlib.h)
 
