@@ -31,9 +31,15 @@
      <rect>
       <x>0</x>
       <y>70</y>
-      <width>201</width>
+      <width>202</width>
       <height>301</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <bold>false</bold>
+     </font>
     </property>
     <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0,0">
      <property name="spacing">
@@ -56,8 +62,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -82,8 +88,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -108,8 +114,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -134,8 +140,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -160,8 +166,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -186,8 +192,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -212,8 +218,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -238,8 +244,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -264,8 +270,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -290,8 +296,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -316,8 +322,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -342,8 +348,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -368,8 +374,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -394,8 +400,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -420,8 +426,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -446,8 +452,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -472,8 +478,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -498,8 +504,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -524,8 +530,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -550,8 +556,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -576,8 +582,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -602,8 +608,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -628,8 +634,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -654,8 +660,8 @@
        <property name="font">
         <font>
          <family>System</family>
-         <pointsize>15</pointsize>
-         <bold>true</bold>
+         <pointsize>11</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -674,28 +680,17 @@
       <height>71</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <bold>false</bold>
+     </font>
+    </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
     </property>
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLineEdit" name="lineEdit_primary">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>30</y>
-       <width>201</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
     <widget class="QLineEdit" name="lineEdit_secondary">
      <property name="enabled">
       <bool>false</bool>
@@ -707,6 +702,12 @@
        <width>151</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+       <bold>false</bold>
+      </font>
      </property>
     </widget>
     <widget class="QLineEdit" name="lineEdit_operation">
@@ -721,6 +722,12 @@
        <height>31</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
     </widget>
     <widget class="QPushButton" name="pushButton">
      <property name="geometry">
@@ -731,8 +738,29 @@
        <height>31</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
      <property name="text">
       <string>?</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_primary">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>31</y>
+       <width>201</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <bold>false</bold>
+      </font>
      </property>
     </widget>
    </widget>
