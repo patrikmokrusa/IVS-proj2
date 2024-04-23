@@ -68,7 +68,7 @@ double k_faktorial(double base_num);
 
 /**
  * @brief k_mocnina
- * umocni basenum_num na^ base_num
+ * umocni basenum_num na ^ base_num
  * @param[in] base_num puvodni ciclo (pod mocninou)
  * @param[in] mocnitel cislo na (mocnitel)
  * @return vraci umocnene cislo
