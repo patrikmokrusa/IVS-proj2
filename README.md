@@ -2,12 +2,11 @@ Prostredi
 ---------
 
 Ubuntu 64bit
-Windows 64bit
 
 Autori
 ------
 
-Nazev tymu
+Tým Hugo
 - xmokrup00 Patrik Mokruša 
 - xgeierd00 Daniel Geier
 - xcernoa00 Adam Černoš 
