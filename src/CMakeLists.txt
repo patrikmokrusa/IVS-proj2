@@ -29,7 +29,7 @@ set(PROF_SOURCE_FILES profiling.cpp)
 set(PROJECT_SOURCES main.cpp ${GUI_SOURCE_FILES})
 
 # Fetch the package
-find_package(Qt6 6.4.2 QUIET)
+find_package(Qt6 QUIET)
 
 if(NOT Qt6_FOUND)
   # Initial message
