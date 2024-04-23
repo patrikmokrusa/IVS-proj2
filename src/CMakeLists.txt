@@ -28,6 +28,68 @@ set(PROF_SOURCE_FILES profiling.cpp)
 
 set(PROJECT_SOURCES main.cpp ${GUI_SOURCE_FILES})
 
+# Fetch the package
+find_package(Qt6 6.4.2 QUIET)
+
+if(NOT Qt6_FOUND)
+  # Initial message
+  message(STATUS "Qt 6.4.2 not found. Downloading and configuring Qt...")
+
+  # Download and extract archive of Qt 6.4.2
+  set(QT_VERSION "6.4.2")
+  set(QT_ARCHIVE_URL
+      "https://download.qt.io/official_releases/qt/6.4/${QT_VERSION}/submodules/qtbase-everywhere-src-${QT_VERSION}.tar.xz"
+  )
+  set(QT_ARCHIVE_FILE
+      "${CMAKE_CURRENT_BINARY_DIR}/qtbase-everywhere-src-${QT_VERSION}.tar.xz")
+  set(QT_SOURCE_DIR
+      "${CMAKE_CURRENT_BINARY_DIR}/qtbase-everywhere-src-${QT_VERSION}")
+  message(STATUS "Downloading the package from the official repository...")
+  file(
+    DOWNLOAD ${QT_ARCHIVE_URL} ${QT_ARCHIVE_FILE}
+    SHOW_PROGRESS
+    EXPECTED_HASH
+      SHA256=a88bc6cedbb34878a49a622baa79cace78cfbad4f95fdbd3656ddb21c705525d)
+  message(STATUS "Unpacking the release...")
+  execute_process(
+    COMMAND ${CMAKE_COMMAND} -E tar xvf ${QT_ARCHIVE_FILE}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    OUTPUT_QUIET)
+
+  # Configure Qt (skip building of useless modules)
+  set(QT_BUILD_DIR "${CMAKE_CURRENT_BINARY_DIR}/qt-build")
+  file(MAKE_DIRECTORY ${QT_BUILD_DIR})
+  message(STATUS "Configuring...")
+  execute_process(COMMAND ${QT_SOURCE_DIR}/configure -prefix ${QT_BUILD_DIR}
+                  WORKING_DIRECTORY ${QT_BUILD_DIR})
+
+  # Check if system supports parallelization
+  if(DEFINED ENV{NUMBER_OF_PROCESSORS})
+    set(JOBS_OPTION "-j$ENV{NUMBER_OF_PROCESSORS}")
+  elseif(DEFINED ENV{PROCESSOR_COUNT})
+    set(JOBS_OPTION "-j$ENV{PROCESSOR_COUNT}")
+  else()
+    set(JOBS_OPTION "")
+  endif()
+
+  # Use -j option to compile if possible (qt is very big)
+  if(JOBS_OPTION)
+    message(STATUS "Compiling with parallelization...")
+    execute_process(COMMAND ninja ${JOBS_OPTION}
+                    WORKING_DIRECTORY ${QT_BUILD_DIR})
+  else()
+    message(STATUS "Compiling without parallelization...")
+    execute_process(COMMAND ninja WORKING_DIRECTORY ${QT_BUILD_DIR})
+  endif()
+
+  # Set necessary environment variables to use Qt
+  set(ENV{QTDIR} ${QT_BUILD_DIR})
+  set(ENV{PATH} ${QT_BUILD_DIR}/bin:$ENV{PATH})
+
+else()
+  message(STATUS "Qt 6.4.2 found in the system.")
+endif()
+
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
   qt_add_executable(${PROJECT_NAME} MANUAL_FINALIZATION ${PROJECT_SOURCES})
   # Define target properties for Android with Qt 6 as: set_property(TARGET
@@ -112,12 +174,33 @@ find_package(Doxygen 1.9.0)
 if(DOXYGEN_FOUND)
   set(doxyfile ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile)
   add_custom_target(
-    doc ALL
+    doc
     COMMAND ${DOXYGEN_EXECUTABLE} ${doxyfile}
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
     COMMENT "Generating API documentation with Doxygen"
     VERBATIM)
 endif()
+
+include_directories("profiling")
+add_executable(prof profiling/profiling.cpp)
+
+set(targets ${CMAKE_CURRENT_SOURCE_DIR}/build/target)
+
+add_custom_target(
+  profile
+  COMMAND ${targets} ./prof
+  WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+  VERBATIM)
+add_custom_target(
+  test
+  COMMAND ${targets} ./test_mathlib/
+  WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+  VERBATIM)
+add_custom_target(
+  run
+  COMMAND ${targets} ../HugoCalc/
+  WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+  VERBATIM)
 
 # Ensures that we do an out of source build
 macro(MACRO_ENSURE_OUT_OF_SOURCE_BUILD MSG)
