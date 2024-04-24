@@ -4,5 +4,5 @@ Type=Application
 Exec=/opt/HugoCalc/HugoCalc
 Path=/opt/HugoCalc
 Name=HugoCalc
-Terminal=true
+Terminal=false
 Categories=Utility;Application;

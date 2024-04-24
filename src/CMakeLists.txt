@@ -238,6 +238,9 @@ set(CPACK_PACKAGE_CONTACT "xgeierd00@stud.fit.vut.cz")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "${PROJECT_NAME} Installer")
 set(CPACK_PACKAGE_VERSION "1.0.0")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/../LICENSE.md")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS
+    "python3, qt5-qmake, qtbase5-dev, qtbase5-dev-tools, libqt5svg5-dev, libqt5webenginewidgets5, libqt5webchannel5-dev, qtwebengine5-dev, build-essential ,libgl1-mesa-dev"
+)
 
 if(WIN32)
   message(FATAL_ERROR "${PROJECT_NAME} requires Linux OS to pack.")
@@ -250,7 +253,7 @@ if(WIN32)
   # '$DESKTOP\\\\${PROJECT_NAME}.lnk'")
 else()
   set(CPACK_GENERATOR DEB)
-  install(DIRECTORY ${bins} DESTINATION /opt/${PROJECT_NAME})
+  install(TARGETS HugoCalc DESTINATION /opt/${PROJECT_NAME})
   install(FILES linux/${PROJECT_NAME}.desktop DESTINATION share/applications)
   set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA
       "${CMAKE_CURRENT_SOURCE_DIR}/linux/postinst;")
