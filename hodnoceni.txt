@@ -1,4 +1,4 @@
-xlogin01 100 (základ GUI a základní mat. operace)
-xlogin02 100 (pokročilé mat. operace)
-xlogin03 90 (profiling, instalátor)
-xlogin04 110 (testy, dokumentace)
+xmokrup00 120 (TDD testy pro matematickou knihovnu, Matematická knihovna, dokumentace kódu, provázání matematické knihovny s UI, vygenerování profiling grafu, licence)
+xgeierd00 120 (veškerý CMake, celkové Buildování programu, instalátor/odinstalátor, Zprovoznění a kompatibilita všech prvků projektu)
+xcernoa00 90 (Návrh a implementace GUI za pomocí QT frameworku, Wireframe, mockup)
+xjelinl00 70 (program pro směrodatnou odchylku, uživatelská příručka příručka)

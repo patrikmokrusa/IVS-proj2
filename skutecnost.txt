@@ -1,1 +1,6 @@
-tento soubor bude obsahovat rozdil mezi planem projektu a skutecnosti
+1) Oproti plánu se změnilo rozdělení práce. Připadlo mi že každý nedělal úplne co měl ale dělal něco
+trochu jiného.
+
+2) Termýny. V celém vývoji se velice projevovalo nutkání prokrastinovat. Málo který termín se dodržel.
+
+
