@@ -213,6 +213,15 @@ add_custom_target(
   COMMENT "Running HugoCalc"
   VERBATIM)
 
+set(zip-name "xgeierd00_xmokrup00_xcernoa00_xjelinl00")
+
+add_custom_target(
+  pack
+  COMMAND
+  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+  COMMENT "Packing HugoCalc project"
+  VERBATIM)
+
 # Ensures that we do an out of source build
 macro(MACRO_ENSURE_OUT_OF_SOURCE_BUILD MSG)
   string(COMPARE EQUAL "${CMAKE_SOURCE_DIR}" "${CMAKE_BINARY_DIR}" insource)
@@ -241,25 +250,42 @@ set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/../LICENSE.md")
 set(CPACK_DEBIAN_PACKAGE_DEPENDS
     "python3, qt5-qmake, qtbase5-dev, qtbase5-dev-tools, libqt5svg5-dev, libqt5webenginewidgets5, libqt5webchannel5-dev, qtwebengine5-dev, build-essential ,libgl1-mesa-dev"
 )
+set(CPACK_OUTPUT_FILE_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}/install")
 
 if(WIN32)
-  message(FATAL_ERROR "${PROJECT_NAME} requires Linux OS to pack.")
-  # set(CPACK_GENERATOR NSIS) install(DIRECTORY . DESTINATION deploy/)
-  # set(CPACK_PACKAGE_INSTALL_DIRECTORY "${bins}/${PROJECT_NAME}")
-  # set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "Execwait 'vcredist_x64.exe /q'")
-  # set(CPACK_NSIS_CREATE_ICONS_EXTRA "CreateShortCut
-  # '$DESKTOP\\\\${PROJECT_NAME}.lnk' '$INSTDIR\\\\${PROJECT_NAME}.bat'" )
-  # set(CPACK_NSIS_DELETE_ICONS_EXTRA "Delete
-  # '$DESKTOP\\\\${PROJECT_NAME}.lnk'")
+  # message(FATAL_ERROR "${PROJECT_NAME} requires Linux OS to pack.")
+  set(CPACK_GENERATOR NSIS)
+  install(TARGETS HugoCalc DESTINATION .)
+  set(CPACK_PACKAGE_INSTALL_DIRECTORY ${PROJECT_NAME})
+  set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "Execwait 'vcredist_x64.exe /q'")
+  set(CPACK_NSIS_CREATE_ICONS_EXTRA "CreateShortCut
+   '$DESKTOP\\\\${PROJECT_NAME}.lnk' '$INSTDIR\\\\${PROJECT_NAME}.bat'")
+  set(CPACK_NSIS_DELETE_ICONS_EXTRA "Delete
+   '$DESKTOP\\\\${PROJECT_NAME}.lnk'")
+  set(CPACK_NSIS_MUI_ICON ${CMAKE_CURRENT_SOURCE_DIR}/favicon.ico)
+  set(CPACK_NSIS_MUI_UNICON ${CMAKE_CURRENT_SOURCE_DIR}/favicon.ico)
+  set(CPACK_NSIS_INSTALLED_ICON_NAME ${bins}/HugoCalc)
 else()
   set(CPACK_GENERATOR DEB)
   install(TARGETS HugoCalc DESTINATION /opt/${PROJECT_NAME})
-  install(FILES linux/${PROJECT_NAME}.desktop DESTINATION share/applications)
+  install(FILES linux/hugocalc/${PROJECT_NAME}.desktop
+          DESTINATION share/applications)
   set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA
-      "${CMAKE_CURRENT_SOURCE_DIR}/linux/postinst;")
+      "${CMAKE_CURRENT_SOURCE_DIR}/linux/hugocalc/postinst;")
   set(CPACK_DEB_MUI_ICON ${CMAKE_CURRENT_SOURCE_DIR}/favicon.ico)
   set(CPACK_DEB_MUI_UNICON ${CMAKE_CURRENT_SOURCE_DIR}/favicon.ico)
   set(CPACK_DEB_INSTALLED_ICON_NAME ${bins}/HugoCalc)
+
+  set(CPACK_PACKAGE_NAME "${PROJECT_NAME} Profiler")
+  set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "${PROJECT_NAME} Profiler")
+  set(CPACK_GENERATOR DEB)
+  install(TARGETS prof DESTINATION /opt/prof)
+  install(FILES linux/profile/prof.desktop DESTINATION share/applications)
+  set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA
+      "${CMAKE_CURRENT_SOURCE_DIR}/linux/profile/postinst;")
+  set(CPACK_DEB_MUI_ICON ${CMAKE_CURRENT_SOURCE_DIR}/favicon.ico)
+  set(CPACK_DEB_MUI_UNICON ${CMAKE_CURRENT_SOURCE_DIR}/favicon.ico)
+  set(CPACK_DEB_INSTALLED_ICON_NAME ${bins}/prof)
 
 endif()
 

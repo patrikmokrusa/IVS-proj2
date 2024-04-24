@@ -5,4 +5,5 @@ Exec=/opt/HugoCalc/HugoCalc
 Path=/opt/HugoCalc
 Name=HugoCalc
 Terminal=false
+Icon=../favicon
 Categories=Utility;Application;

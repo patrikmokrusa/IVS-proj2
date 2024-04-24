@@ -12,10 +12,10 @@ src/html
 src/latex
 src/_deps
 src/build
-src/docs
-src/gui/build
+src/doc
 callgrind.*
 out.dot
 src/profiling/profiling
 src/profiling/graph.png
 gprof2dot.py
+src/install

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=/opt/prof/prof
+Path=/opt/prof
+Name=Profiler
+Terminal=false
+Icon=../favicon
+Categories=Utility;Application;
