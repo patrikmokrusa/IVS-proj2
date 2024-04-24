@@ -28,7 +28,7 @@ set(GUI_SOURCE_FILES mainwindow.cpp mainwindow.h mainwindow.ui)
 set(MATHLIB_SOURCE_FILES mathlib.cpp)
 set(MATHLIB_HEADER_FILES mathlib.h)
 
-set(PROF_SOURCE_FILES profiling.cpp)
+set(PROF_SOURCE_FILES profiling/profiling.cpp)
 
 # set(PROJECT_SOURCES main.cpp ${MATHLIB_HEADER_FILES} ${MATHLIB_SOURCE_FILES}
 # ${GUI_SOURCE_FILES})
@@ -82,11 +82,11 @@ if(NOT Qt6_FOUND)
   # Use -j option to compile if possible (qt is very big)
   if(JOBS_OPTION)
     message(STATUS "Compiling with parallelization...")
-    execute_process(COMMAND make ${JOBS_OPTION}
+    execute_process(COMMAND CMAKE_GENERATOR ${JOBS_OPTION}
                     WORKING_DIRECTORY ${QT_BUILD_DIR})
   else()
     message(STATUS "Compiling without parallelization...")
-    execute_process(COMMAND make WORKING_DIRECTORY ${QT_BUILD_DIR})
+    execute_process(COMMAND CMAKE_GENERATOR WORKING_DIRECTORY ${QT_BUILD_DIR})
   endif()
 
   # Set necessary environment variables to use Qt
@@ -100,7 +100,7 @@ endif()
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
   qt_add_executable(${PROJECT_NAME} MANUAL_FINALIZATION ${PROJECT_SOURCES})
   # Define target properties for Android with Qt 6 as: set_property(TARGET
-  # Hugocalc APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+  # HugoCalc APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
   # ${CMAKE_CURRENT_SOURCE_DIR}/android) For more information, see
   # https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
@@ -196,19 +196,19 @@ set(bins ${CMAKE_CURRENT_SOURCE_DIR}/build/bin)
 
 add_custom_target(
   profile
-  COMMAND ${bins} ./prof < ../../profiling/data.txt
+  COMMAND prof
   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-  COMMENT "Profiling"
+  COMMENT "Compiling profiling"
   VERBATIM)
 add_custom_target(
   test
-  COMMAND ${bins} ./test_mathlib/
+  COMMAND ${bins}/test_mathlib
   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-  COMMENT "Test for mathlib"
+  COMMENT "Running tests for mathlib"
   VERBATIM)
 add_custom_target(
   run
-  COMMAND ${bins} ../HugoCalc/
+  COMMAND ${bins}/HugoCalc
   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
   COMMENT "Running HugoCalc"
   VERBATIM)
@@ -229,3 +229,43 @@ macro_ensure_out_of_source_build(
 # Support for Visual Studio
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT
                                                             ${PROJECT_NAME})
+
+# Generation of package
+set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
+set(CPACK_PACKAGE_VENDOR "ivs.fit.vutbr.cz")
+set(CPACK_PACKAGE_CONTACT "xgeierd00@stud.fit.vut.cz")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "${PROJECT_NAME} Installer")
+set(CPACK_PACKAGE_VERSION "1.0.0")
+
+if(WIN32)
+  set(CPACK_GENERATOR NSIS)
+  install(DIRECTORY deployment_win/ DESTINATION .)
+  set(CPACK_PACKAGE_INSTALL_DIRECTORY "${PROJECT_NAME}")
+  set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "Execwait 'vcredist_x64.exe /q'")
+  set(CPACK_NSIS_CREATE_ICONS_EXTRA
+      "CreateShortCut '$DESKTOP\\\\${PROJECT_NAME}.lnk' '$INSTDIR\\\\${PROJECT_NAME}.bat'"
+  )
+  set(CPACK_NSIS_DELETE_ICONS_EXTRA "Delete '$DESKTOP\\\\${PROJECT_NAME}.lnk'")
+else()
+  set(CPACK_GENERATOR DEB)
+  install(DIRECTORY deployment_linux/ DESTINATION /opt/${PROJECT_NAME})
+  install(FILES linux/${PROJECT_NAME}.desktop DESTINATION share/applications)
+  set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA
+      "${CMAKE_CURRENT_SOURCE_DIR}/linux/postinst;")
+
+  # set(CPACK_GENERATOR RPM) install(DIRECTORY deployment_linux/ DESTINATION
+  # /opt/${PROJECT_NAME}) install(FILES linux/${PROJECT_NAME}.desktop
+  # DESTINATION /usr/share/applications)
+  # set(CPACK_RPM_EXCLUDE_FROM_AUTO_FILELIST_ADDITION /opt
+  # /usr/share/applications) set(CPACK_RPM_POST_INSTALL_SCRIPT_FILE
+  # "${CMAKE_CURRENT_SOURCE_DIR}/linux/postinst")
+  # set(CPACK_RPM_PRE_UNINSTALL_SCRIPT_FILE
+  # "${CMAKE_CURRENT_SOURCE_DIR}/linux/preun")
+endif()
+
+include(InstallRequiredSystemLibraries)
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/License.txt")
+set(CPACK_PACKAGE_VERSION_MAJOR "${Tutorial_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${Tutorial_VERSION_MINOR}")
+set(CPACK_SOURCE_GENERATOR "TGZ")
+include(CPack)
