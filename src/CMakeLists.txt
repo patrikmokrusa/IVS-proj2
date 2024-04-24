@@ -231,41 +231,30 @@ set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT
                                                             ${PROJECT_NAME})
 
 # Generation of package
+include(InstallRequiredSystemLibraries)
 set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
 set(CPACK_PACKAGE_VENDOR "ivs.fit.vutbr.cz")
 set(CPACK_PACKAGE_CONTACT "xgeierd00@stud.fit.vut.cz")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "${PROJECT_NAME} Installer")
 set(CPACK_PACKAGE_VERSION "1.0.0")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/../LICENSE.md")
 
 if(WIN32)
-  set(CPACK_GENERATOR NSIS)
-  install(DIRECTORY deployment_win/ DESTINATION .)
-  set(CPACK_PACKAGE_INSTALL_DIRECTORY "${PROJECT_NAME}")
-  set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "Execwait 'vcredist_x64.exe /q'")
-  set(CPACK_NSIS_CREATE_ICONS_EXTRA
-      "CreateShortCut '$DESKTOP\\\\${PROJECT_NAME}.lnk' '$INSTDIR\\\\${PROJECT_NAME}.bat'"
-  )
-  set(CPACK_NSIS_DELETE_ICONS_EXTRA "Delete '$DESKTOP\\\\${PROJECT_NAME}.lnk'")
+  message(FATAL_ERROR "${PROJECT_NAME} requires Linux to pack.")
+  # set(CPACK_GENERATOR NSIS) install(DIRECTORY . DESTINATION deploy/)
+  # set(CPACK_PACKAGE_INSTALL_DIRECTORY "${bins}/${PROJECT_NAME}")
+  # set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "Execwait 'vcredist_x64.exe /q'")
+  # set(CPACK_NSIS_CREATE_ICONS_EXTRA "CreateShortCut
+  # '$DESKTOP\\\\${PROJECT_NAME}.lnk' '$INSTDIR\\\\${PROJECT_NAME}.bat'" )
+  # set(CPACK_NSIS_DELETE_ICONS_EXTRA "Delete
+  # '$DESKTOP\\\\${PROJECT_NAME}.lnk'")
 else()
   set(CPACK_GENERATOR DEB)
-  install(DIRECTORY deployment_linux/ DESTINATION /opt/${PROJECT_NAME})
+  install(DIRECTORY ${bins} DESTINATION /opt/${PROJECT_NAME})
   install(FILES linux/${PROJECT_NAME}.desktop DESTINATION share/applications)
   set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA
       "${CMAKE_CURRENT_SOURCE_DIR}/linux/postinst;")
 
-  # set(CPACK_GENERATOR RPM) install(DIRECTORY deployment_linux/ DESTINATION
-  # /opt/${PROJECT_NAME}) install(FILES linux/${PROJECT_NAME}.desktop
-  # DESTINATION /usr/share/applications)
-  # set(CPACK_RPM_EXCLUDE_FROM_AUTO_FILELIST_ADDITION /opt
-  # /usr/share/applications) set(CPACK_RPM_POST_INSTALL_SCRIPT_FILE
-  # "${CMAKE_CURRENT_SOURCE_DIR}/linux/postinst")
-  # set(CPACK_RPM_PRE_UNINSTALL_SCRIPT_FILE
-  # "${CMAKE_CURRENT_SOURCE_DIR}/linux/preun")
 endif()
 
-include(InstallRequiredSystemLibraries)
-set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/License.txt")
-set(CPACK_PACKAGE_VERSION_MAJOR "${Tutorial_VERSION_MAJOR}")
-set(CPACK_PACKAGE_VERSION_MINOR "${Tutorial_VERSION_MINOR}")
-set(CPACK_SOURCE_GENERATOR "TGZ")
 include(CPack)
