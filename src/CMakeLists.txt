@@ -40,10 +40,10 @@ find_package(Qt6 QUIET)
 
 if(NOT Qt6_FOUND)
   # Initial message
-  message(STATUS "Qt 6.4.2 not found. Downloading and configuring Qt...")
+  message(STATUS "Qt 6 not found. Downloading and configuring Qt...")
 
   # Download and extract archive of Qt 6.4.2
-  set(QT_VERSION "6.4.2")
+  set(QT_VERSION "6")
   set(QT_ARCHIVE_URL
       "https://download.qt.io/official_releases/qt/6.4/${QT_VERSION}/submodules/qtbase-everywhere-src-${QT_VERSION}.tar.xz"
   )
@@ -82,11 +82,11 @@ if(NOT Qt6_FOUND)
   # Use -j option to compile if possible (qt is very big)
   if(JOBS_OPTION)
     message(STATUS "Compiling with parallelization...")
-    execute_process(COMMAND ninja ${JOBS_OPTION}
+    execute_process(COMMAND make ${JOBS_OPTION}
                     WORKING_DIRECTORY ${QT_BUILD_DIR})
   else()
     message(STATUS "Compiling without parallelization...")
-    execute_process(COMMAND ninja WORKING_DIRECTORY ${QT_BUILD_DIR})
+    execute_process(COMMAND make WORKING_DIRECTORY ${QT_BUILD_DIR})
   endif()
 
   # Set necessary environment variables to use Qt
@@ -94,7 +94,7 @@ if(NOT Qt6_FOUND)
   set(ENV{PATH} ${QT_BUILD_DIR}/bin:$ENV{PATH})
 
 else()
-  message(STATUS "Qt 6.4.2 found in the system.")
+  message(STATUS "Qt 6 found in the system.")
 endif()
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -133,16 +133,17 @@ set_target_properties(
 include(GNUInstallDirs)
 install(
   TARGETS ${PROJECT_NAME}
-  BUNDLE DESTINATION LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/./target
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}/./target)
+  BUNDLE DESTINATION LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/lib
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}/bin)
 
 if(QT_VERSION_MAJOR EQUAL 6)
   qt_finalize_executable(${PROJECT_NAME})
 endif()
 
-# Output built files to ./target/
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/./target)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/./target)
+# Where to build files
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 -fprofile-arcs")
@@ -191,22 +192,25 @@ endif()
 include_directories("profiling")
 add_executable(prof profiling/profiling.cpp)
 
-set(targets ${CMAKE_CURRENT_SOURCE_DIR}/build/target)
+set(bins ${CMAKE_CURRENT_SOURCE_DIR}/build/bin)
 
 add_custom_target(
   profile
-  COMMAND ${targets} ./prof < ../../profiling/data.txt
+  COMMAND ${bins} ./prof < ../../profiling/data.txt
   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+  COMMENT "Profiling"
   VERBATIM)
 add_custom_target(
   test
-  COMMAND ${targets} ./test_mathlib/
+  COMMAND ${bins} ./test_mathlib/
   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+  COMMENT "Test for mathlib"
   VERBATIM)
 add_custom_target(
   run
-  COMMAND ${targets} ../HugoCalc/
+  COMMAND ${bins} ../HugoCalc/
   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+  COMMENT "Running HugoCalc"
   VERBATIM)
 
 # Ensures that we do an out of source build
