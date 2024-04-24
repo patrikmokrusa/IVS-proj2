@@ -257,6 +257,9 @@ else()
   install(FILES linux/${PROJECT_NAME}.desktop DESTINATION share/applications)
   set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA
       "${CMAKE_CURRENT_SOURCE_DIR}/linux/postinst;")
+  set(CPACK_DEB_MUI_ICON ${CMAKE_CURRENT_SOURCE_DIR}/favicon.ico)
+  set(CPACK_DEB_MUI_UNICON ${CMAKE_CURRENT_SOURCE_DIR}/favicon.ico)
+  set(CPACK_DEB_INSTALLED_ICON_NAME ${bins}/HugoCalc)
 
 endif()
 
