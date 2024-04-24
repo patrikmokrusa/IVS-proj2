@@ -2,18 +2,17 @@ Prostredi
 ---------
 
 Ubuntu 64bit
-Windows 64bit
 
 Autori
 ------
 
-Nazev tymu
-- xlogin01 jmeno prijmeni 
-- xlogin02 jmeno prijmeni 
-- xlogin03 jmeno prijmeni 
-- xlogin04 jmeno prijmeni 
+Tým Hugo
+- xmokrup00 Patrik Mokruša 
+- xgeierd00 Daniel Geier
+- xcernoa00 Adam Černoš 
+- xjelinl00 Lukáš Jelínek 
 
 Licence
 -------
 
-Tento program je poskytovan...
+Tento program je poskytovan licencí GNU GPLv3
