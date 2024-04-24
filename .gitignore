@@ -12,7 +12,7 @@ src/html
 src/latex
 src/_deps
 src/build
-src/docs
+src/doc
 src/gui/build
 callgrind.*
 out.dot
