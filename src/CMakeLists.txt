@@ -240,7 +240,7 @@ set(CPACK_PACKAGE_VERSION "1.0.0")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/../LICENSE.md")
 
 if(WIN32)
-  message(FATAL_ERROR "${PROJECT_NAME} requires Linux to pack.")
+  message(FATAL_ERROR "${PROJECT_NAME} requires Linux OS to pack.")
   # set(CPACK_GENERATOR NSIS) install(DIRECTORY . DESTINATION deploy/)
   # set(CPACK_PACKAGE_INSTALL_DIRECTORY "${bins}/${PROJECT_NAME}")
   # set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "Execwait 'vcredist_x64.exe /q'")
