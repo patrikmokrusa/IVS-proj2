@@ -241,7 +241,7 @@ void MainWindow::on_pushButton_clicked() {
   dialog->setMinimumSize(220, 300);
   dialog->setMaximumSize(220, 300);
   QPushButton *ExitButton = new QPushButton();
-  connect(ExitButton, SIGNAL(clicked()), this, SLOT(on_exitButton_clicked()));
+  connect(ExitButton, SIGNAL(clicked()), this, SLOT(exitButton_clicked()));
 
   QLabel *LabelMain = new QLabel();
   LabelMain->setText("Tohle je HELP");
@@ -297,7 +297,7 @@ void MainWindow::on_pushButton_clicked() {
   ExitButton->show();
   dialog->show();
 }
-void MainWindow::on_exitButton_clicked() { dialog->close(); }
+void MainWindow::exitButton_clicked() { dialog->close(); }
 
 void MainWindow::on_button_factorial_clicked() {
   handleOperation("!");

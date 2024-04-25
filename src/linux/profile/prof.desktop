@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Exec=/opt/HugoCalc/HugoCalc
-Path=/opt/HugoCalc
-Name=HugoCalc
+Exec=/opt/prof/prof
+Path=/opt/prof
+Name=Profiler
 Terminal=false
-Icon=favicon
+Icon=../favicon
 Categories=Utility;Application;

@@ -13,9 +13,9 @@ src/latex
 src/_deps
 src/build
 src/doc
-src/gui/build
 callgrind.*
 out.dot
 src/profiling/profiling
 src/profiling/graph.png
 gprof2dot.py
+src/install

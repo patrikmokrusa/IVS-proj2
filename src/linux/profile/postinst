@@ -1,0 +1,4 @@
+#!/bin/bash
+
+chmod +x /opt/HugoCalc/HugoCalc
+desktop-file-install /usr/share/applications/HugoCalc.desktop

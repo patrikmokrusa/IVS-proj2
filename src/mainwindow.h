@@ -49,7 +49,7 @@ public:
    */
   ~MainWindow();
 
-private:
+private slots:
   /**
    * @brief do primary dá výsledek požadovaného výpočtu podle operation
    */
@@ -187,7 +187,7 @@ private:
   /**
    * @brief při kliknutí na tlačítko exit v help zavře okno help
    */
-  void on_exitButton_clicked();
+  void exitButton_clicked();
 
   /**
    * @brief při kliknutí na tlačítko 1/x nastaví pole operand na 1/x
