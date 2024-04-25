@@ -268,24 +268,22 @@ if(WIN32)
 else()
   set(CPACK_GENERATOR DEB)
   install(TARGETS HugoCalc DESTINATION /opt/${PROJECT_NAME})
-  install(FILES linux/hugocalc/${PROJECT_NAME}.desktop
-          DESTINATION share/applications)
+  install(FILES linux/${PROJECT_NAME}.desktop DESTINATION share/applications)
   set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA
-      "${CMAKE_CURRENT_SOURCE_DIR}/linux/hugocalc/postinst;")
+      "${CMAKE_CURRENT_SOURCE_DIR}/linux/postinst;")
   set(CPACK_DEB_MUI_ICON ${CMAKE_CURRENT_SOURCE_DIR}/favicon.ico)
   set(CPACK_DEB_MUI_UNICON ${CMAKE_CURRENT_SOURCE_DIR}/favicon.ico)
   set(CPACK_DEB_INSTALLED_ICON_NAME ${bins}/HugoCalc)
 
-  set(CPACK_PACKAGE_NAME "${PROJECT_NAME} Profiler")
-  set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "${PROJECT_NAME} Profiler")
-  set(CPACK_GENERATOR DEB)
-  install(TARGETS prof DESTINATION /opt/prof)
-  install(FILES linux/profile/prof.desktop DESTINATION share/applications)
-  set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA
-      "${CMAKE_CURRENT_SOURCE_DIR}/linux/profile/postinst;")
-  set(CPACK_DEB_MUI_ICON ${CMAKE_CURRENT_SOURCE_DIR}/favicon.ico)
-  set(CPACK_DEB_MUI_UNICON ${CMAKE_CURRENT_SOURCE_DIR}/favicon.ico)
-  set(CPACK_DEB_INSTALLED_ICON_NAME ${bins}/prof)
+  # set(CPACK_PACKAGE_NAME "${PROJECT_NAME} Profiler")
+  # set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "${PROJECT_NAME} Profiler")
+  # set(CPACK_GENERATOR DEB) install(TARGETS prof DESTINATION /opt/prof)
+  # install(FILES linux/profile/prof.desktop DESTINATION share/applications)
+  # set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA
+  # "${CMAKE_CURRENT_SOURCE_DIR}/linux/profile/postinst;")
+  # set(CPACK_DEB_MUI_ICON ${CMAKE_CURRENT_SOURCE_DIR}/favicon.ico)
+  # set(CPACK_DEB_MUI_UNICON ${CMAKE_CURRENT_SOURCE_DIR}/favicon.ico)
+  # set(CPACK_DEB_INSTALLED_ICON_NAME ${bins}/prof)
 
 endif()
 
