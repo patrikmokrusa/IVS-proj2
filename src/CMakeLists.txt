@@ -218,6 +218,9 @@ set(zip-name "xgeierd00_xmokrup00_xcernoa00_xjelinl00")
 add_custom_target(
   pack
   COMMAND
+    ${CMAKE_COMMAND} -E tar "cfv" "${zip-name}.zip" --format=zip
+    "${CMAKE_CURRENT_SOURCE_DIR}/testfile.txt"
+    "${CMAKE_CURRENT_SOURCE_DIR}/testdir"
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
   COMMENT "Packing HugoCalc project"
   VERBATIM)
